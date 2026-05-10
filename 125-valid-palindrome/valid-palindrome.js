@@ -4,21 +4,35 @@
  */
 var isPalindrome = function(s) {
 
-    function isAlphanumeric(char) {
-        return (
-            (char >= 'a' && char <= 'z') ||
-            (char >= 'A' && char <= 'Z') ||
-            (char >= '0' && char <= '9')
-        );
-    }
+    let l = 0;
+    let r = s.length - 1;
 
-    let newStr = '';
+    while(l < r){
 
-    for (let c of s) {
-        if (isAlphanumeric(c)) {
-            newStr += c.toLowerCase();
+        while(l < r && !alphaNum(s[l])){
+            l++;
         }
+
+        while(l < r && !alphaNum(s[r])){
+            r--;
+        }
+
+        if(s[l].toLowerCase() !== s[r].toLowerCase()){
+            return false;
+        }
+
+        l++;
+        r--;
     }
 
-    return newStr === newStr.split('').reverse().join('');
+    return true;
 };
+
+function alphaNum(c){
+
+    return (
+        (c >= 'A' && c <= 'Z') ||
+        (c >= 'a' && c <= 'z') ||
+        (c >= '0' && c <= '9')
+    );
+}
