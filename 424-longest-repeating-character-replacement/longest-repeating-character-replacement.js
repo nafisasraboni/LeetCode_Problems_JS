@@ -19,7 +19,5 @@ var characterReplacement = function(s, k) {
             }
             res = Math.max(res, r - l + 1);
         }
-
-        return res;
-    
+        return res;     
 };
