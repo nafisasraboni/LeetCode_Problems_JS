@@ -30,8 +30,4 @@ var threeSum = function(nums) {
             }
         }
         return res;
-    }
-    
-   
-
-  
+};
