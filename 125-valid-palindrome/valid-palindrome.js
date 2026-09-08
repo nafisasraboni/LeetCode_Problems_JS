@@ -3,36 +3,23 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
+    let lowerS = s.toLowerCase();
+    let finalS='';
 
-    let l = 0;
-    let r = s.length - 1;
-
-    while(l < r){
-
-        while(l < r && !alphaNum(s[l])){
-            l++;
+    for(let i=0;i<lowerS.length;i++){
+        if(lowerS[i]>='a' && lowerS[i]<='z' || lowerS[i]>='0' && lowerS[i]<='9'){
+            finalS+=lowerS[i];
         }
-
-        while(l < r && !alphaNum(s[r])){
-            r--;
-        }
-
-        if(s[l].toLowerCase() !== s[r].toLowerCase()){
-            return false;
-        }
-
-        l++;
-        r--;
     }
 
-    return true;
+    let splited = finalS.split("");
+    let reversed = splited.reverse();
+    let joined = reversed.join("");
+
+    if(finalS===joined){
+        return true
+    }else{
+        return false;
+    }
+
 };
-
-function alphaNum(c){
-
-    return (
-        (c >= 'A' && c <= 'Z') ||
-        (c >= 'a' && c <= 'z') ||
-        (c >= '0' && c <= '9')
-    );
-}
