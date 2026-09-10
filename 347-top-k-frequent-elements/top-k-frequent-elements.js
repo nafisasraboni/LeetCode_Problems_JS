@@ -4,7 +4,7 @@
  * @return {number[]}
  */
 var topKFrequent = function(nums, k) {
-        const count = {};
+   const count = {};
         const freq = Array.from({ length: nums.length + 1 }, () => []);
 
         for (const n of nums) {
@@ -22,6 +22,5 @@ var topKFrequent = function(nums, k) {
                     return res;
                 }
             }
-        }
-    };
-    
+        } 
+};
