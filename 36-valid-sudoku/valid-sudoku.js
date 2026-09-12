@@ -3,32 +3,29 @@
  * @return {boolean}
  */
 var isValidSudoku = function(board) {
-    const row = new Map();
-    const col = new Map();
-    const square = new Map();
+    let rows = new Array(9).fill(0);
+        let cols = new Array(9).fill(0);
+        let squares = new Array(9).fill(0);
 
-    for (let r=0; r<9; r++){
-        for (let c=0; c<9; c++){
-            if (board[r][c]==='.') continue;
-            const squarekey = `${Math.floor(r/3)},${Math.floor(c/3)}`;
+        for (let r = 0; r < 9; r++) {
+            for (let c = 0; c < 9; c++) {
+                if (board[r][c] === '.') continue;
 
-            if(
-                (row.get(r) && row.get(r).has(board[r][c]))||
-            (col.get(c) && col.get(c).has(board[r][c]))||
-            (square.get(squarekey) && square.get(squarekey).has(board[r][c]))
-            ){
-            return false;
+                let val = board[r][c] - '1';
+
+                if (
+                    rows[r] & (1 << val) ||
+                    cols[c] & (1 << val) ||
+                    squares[Math.floor(r / 3) * 3 + Math.floor(c / 3)] &
+                        (1 << val)
+                ) {
+                    return false;
+                }
+
+                rows[r] |= 1 << val;
+                cols[c] |= 1 << val;
+                squares[Math.floor(r / 3) * 3 + Math.floor(c / 3)] |= 1 << val;
             }
-
-            if(!row.has(r)) row.set(r,new Set());
-            if(!col.has(c)) col.set(c,new Set());
-            if(!square.has(squarekey)) square.set(squarekey,new Set());
-
-            row.get(r).add(board[r][c]);
-            col.get(c).add(board[r][c]);
-            square.get(squarekey).add(board[r][c]);
         }
-        
-    }
-    return true;
+        return true;
 };
