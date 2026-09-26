@@ -4,7 +4,7 @@
  * @return {boolean}
  */
 var checkInclusion = function(s1, s2) {
-    if (s1.length > s2.length) {
+     if (s1.length > s2.length) {
             return false;
         }
 
@@ -46,5 +46,4 @@ var checkInclusion = function(s1, s2) {
             l++;
         }
         return matches === 26;
-
 };
