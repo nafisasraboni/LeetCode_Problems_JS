@@ -15,5 +15,5 @@ var productExceptSelf = function(nums) {
             res[i] *= postfix;
             postfix *= nums[i];
         }
-        return res; 
+        return res;
 };
